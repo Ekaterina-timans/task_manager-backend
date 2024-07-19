@@ -7,7 +7,7 @@ $token = $headers['Authorization'];
 
 if(isset($token)) {
     $tokenIssuer = new TokenIssuer();
-    $tokenData = $tokenIssuer->validateToken($token);
+    $tokenData = $tokenIssuer->validateAccessToken($token);
     $user_id = $tokenData->id;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
