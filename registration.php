@@ -25,12 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if($add) {
                 $userId = mysqli_insert_id($db_conn);
-            $tokens = $tokenIssuer->issueTokens($userId, $isAdmin);
-            $accessToken = $tokens['accessToken'];
-            $refreshToken = $tokens['refreshToken'];
-            $tokenIssuer->addRefreshTokenToResponse($refreshToken);
-            http_response_code(200);
-            echo json_encode(array('message' => 'User created.', 'accessToken' => $accessToken));
+                $tokens = $tokenIssuer->issueTokens($userId, $isAdmin);
+                $accessToken = $tokens['accessToken'];
+                $refreshToken = $tokens['refreshToken'];
+                $tokenIssuer->addRefreshTokenToResponse($refreshToken);
+                http_response_code(200);
+                echo json_encode(array('message' => 'User created.', 'accessToken' => $accessToken));
             }
             else {
                 echo json_encode('Failed to create user.');

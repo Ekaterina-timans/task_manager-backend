@@ -12,8 +12,9 @@ if(isset($data->email) && isset($data->password) && !empty(trim($data->email)) &
     $user = mysqli_fetch_assoc($result);
     $tokenIssuer = new TokenIssuer();
 
-    if ($user && password_verify($user_psw, $user['password'])) {
-        $tokens = $tokenIssuer->issueTokens($user['id'], $user['is_admin']);
+    if ($user && password_verify($user_psw, $user['password_user'])) {
+        $isAdmin = 0;
+        $tokens = $tokenIssuer->issueTokens($user['id'], $isAdmin);
         $accessToken = $tokens['accessToken'];
         $refreshToken = $tokens['refreshToken'];
         $tokenIssuer->addRefreshTokenToResponse($refreshToken);
